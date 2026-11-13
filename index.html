@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Deeksha - Personal Profile</title>
+
+<style>
+
+/* GENERAL SETTINGS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#e8eaff,#f5edff,#e8e8e8);
+    color: #222;
+    padding: 20px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HOME PAGE */
+
+.home {
+    max-width: 900px;
+    min-height: 85vh;
+    margin: 25px auto;
+    background: white;
+    padding: 40px 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(37,44,73,.15);
+    animation: appear 1s ease;
+}
+
+.home h1 {
+    font-size: 32px;
+    color: #252c49;
+    margin: 20px 0;
+    letter-spacing: 2px;
+}
+
+.home h2 {
+    color: #6d60b7;
+    font-size: 28px;
+    margin: 15px;
+}
+
+.home p {
+    color: #777;
+    line-height: 1.7;
+    margin: 15px;
+}
+
+/* HOME PROFILE PHOTO */
+
+.home-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #a69aff;
+    box-shadow: 0 0 20px rgba(119,119,255,.4);
+    transition: .4s;
+}
+
+.home-photo:hover {
+    transform: scale(1.08);
+}
+
+.photo-upload-btn {
+    display: block;
+    width: fit-content;
+    margin: 15px auto 25px;
+    background: #252c49;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.photo-upload-btn:hover {
+    background: #7777dd;
+    transform: scale(1.05);
+}
+
+#photoUpload {
+    display: none;
+}
+
+/* HOME OPTIONS */
+
+.home-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.option-card {
+    width: 270px;
+    padding: 30px 20px;
+    background: #f3f2ff;
+    border: 2px solid #a69aff;
+    border-radius: 15px;
+    transition: .4s;
+}
+
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(119,119,255,.25);
+}
+
+.icon {
+    font-size: 45px;
+}
+
+.option-card h3 {
+    color: #252c49;
+    margin: 15px;
+    font-size: 23px;
+}
+
+.option-card p {
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.option-card button {
+    background: #252c49;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.option-card button:hover {
+    background: #7777dd;
+    transform: scale(1.05);
+}
+
+/* RESUME AND BIODATA */
+
+.resume,
+.biodata {
+    max-width: 850px;
+    margin: 20px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 35px rgba(37,44,73,.15);
+    animation: appear 1s ease;
+}
+
+/* HEADER */
+
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    font-family: Georgia,serif;
+    font-size: 27px;
+    color: #252c49;
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+}
+
+.profile-image {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #a69aff;
+    box-shadow: 0 0 15px rgba(119,119,255,.4);
+}
+
+.header h2 {
+    color: #252c49;
+    font-size: 26px;
+    margin: 10px;
+}
+
+.role {
+    color: #777;
+    font-size: 14px;
+    margin: 10px;
+}
+
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    font-size: 12px;
+    line-height: 2;
+}
+
+/* SECTIONS */
+
+section {
+    margin-top: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #252c49;
+    transition: .4s;
+}
+
+section h3 {
+    color: #252c49;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+section ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+section ul li {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* EDUCATION AND EXPERIENCE */
+
+.education-item,
+.experience-item,
+.project {
+    padding: 9px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    transition: .3s;
+}
+
+.education-item:hover,
+.experience-item:hover,
+.project:hover {
+    background: #f3f2ff;
+    transform: translateX(5px);
+}
+
+.title-date {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.title-date strong {
+    color: #252c49;
+    font-size: 14px;
+}
+
+.date {
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* TECHNICAL SKILLS */
+
+.skills {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.skills strong {
+    color: #252c49;
+}
+
+/* BIODATA */
+
+.biodata h1 {
+    text-align: center;
+    color: #252c49;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.bio-details {
+    margin-top: 25px;
+}
+
+.bio-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 10px;
+    padding: 13px;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    line-height: 1.5;
+    transition: .3s;
+}
+
+.bio-row:hover {
+    background: #f3f2ff;
+    padding-left: 20px;
+}
+
+.bio-row strong {
+    color: #252c49;
+}
+
+/* BUTTONS */
+
+.buttons {
+    text-align: center;
+    margin: 25px auto;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    background: linear-gradient(90deg,#252c49,#6d60b7);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 5px;
+    transition: .3s;
+}
+
+.action-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px #aaa;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:600px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .home {
+        padding: 25px 12px;
+    }
+
+    .home h1 {
+        font-size: 25px;
+    }
+
+    .resume,
+    .biodata {
+        padding: 17px;
+    }
+
+    .contact {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .title-date {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .skills {
+        grid-template-columns: 110px 1fr;
+    }
+
+    .bio-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    .contact a {
+    color: #252c49;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.contact a:hover {
+    color: #7777dd;
+    text-decoration: underline;
+}
+
+}
+
+/* PRINT SETTINGS */
+
+@media print {
+
+    @page {
+        margin: 12mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .page {
+        display: none !important;
+    }
+
+    .page.active {
+        display: block !important;
+    }
+
+    .resume,
+    .biodata {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 5px;
+    }
+
+    .buttons,
+    .photo-upload-btn {
+        display: none !important;
+    }
+
+    section {
+        break-inside: avoid;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================================= -->
+<!-- HOME PAGE -->
+<!-- ================================= -->
+
+<div id="homePage" class="page active">
+
+<div class="home">
+
+<h1>WELCOME TO MY PROFILE</h1>
+
+<!-- PROFILE PHOTO -->
+
+<img id="homePhoto"
+src="deeksha.jpeg"
+class="home-photo"
+alt="Profile Photo">
+
+
+
+<h2>DEEKSHA</h2>
+
+<p>
+Computer Science Engineering Student
+<br>
+Welcome to my personal website.
+<br>
+Choose below to explore my information.
+</p>
+
+
+<div class="home-options">
+
+<!-- RESUME OPTION -->
+
+<div class="option-card">
+
+<div class="icon">📄</div>
+
+<h3>My Resume</h3>
+
+<p>
+Explore my education, experience,
+projects, certifications and technical skills.
+</p>
+
+<button onclick="showPage('resumePage')">
+View Resume
+</button>
+
+</div>
+
+
+<!-- BIODATA OPTION -->
+
+<div class="option-card">
+
+<div class="icon">👩‍🎓</div>
+
+<h3>My Biodata</h3>
+
+<p>
+Explore my personal information,
+educational details and interests.
+</p>
+
+<button onclick="showPage('biodataPage')">
+View Biodata
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- RESUME PAGE -->
+<!-- ================================= -->
+
+<div id="resumePage" class="page">
+
+<div class="resume">
+
+<div class="header">
+
+<h1>RESUME</h1>
+
+<img id="resumePhoto"
+src="https://placehold.co/100x100?text=Photo"
+class="profile-image"
+alt="Profile Photo">
+
+<h2>DEEKSHA</h2>
+
+<p class="role">
+Computer Science Engineering Student
+</p>
+
+<div class="contact">
+
+    <span>📍 Puttur, DK</span>
+
+    <span>📞 9901404319</span>
+
+    <span>
+        ✉
+        <a href="mailto:deekshakpoojary023@gmail.com">
+            deekshakpoojary023@gmail.com
+        </a>
+    </span>
+
+    <span>
+        🔗
+        <a href="https://www.linkedin.com/in/deeksha-k-20b876435"
+           target="_blank">
+            LinkedIn Profile
+        </a>
+    </span>
+
+    <span>
+        💻
+        <a href="https://github.com/Deekshasaliyan"
+           target="_blank">
+            GitHub Profile
+        </a>
+    </span>
+
+</div>
+
+</div>
+
+
+<!-- PROFESSIONAL SUMMARY -->
+
+<section>
+
+<h3>Professional Summary</h3>
+
+<p>
+Motivated Computer Science Engineering student with strong
+foundations in programming, web development, databases,
+and software engineering. Experienced in developing academic
+and web-based projects using HTML, CSS, JavaScript,
+Python, and SQL. Passionate about backend development
+and emerging technologies.
+</p>
+
+</section>
+
+
+<!-- EDUCATION -->
+
+<section>
+
+<h3>Education</h3>
+
+<div class="education-item">
+
+<div class="title-date">
+
+<strong>
+Vivekananda College of Engineering and Technology, Puttur
+</strong>
+
+<span class="date">2024 – Present</span>
+
+</div>
+
+<p>Bachelor of Engineering in Computer Science</p>
+<p>CGPA:8.32</p>
+
+</div>
+
+
+<div class="education-item">
+
+<div class="title-date">
+
+<strong>Shri Rama PU College</strong>
+
+<span class="date">2022 – 2024</span>
+
+</div>
+
+<p>Pre-University Course (PUC)</p>
+<p>percentage:81.5%</p>
+
+
+</div>
+<div class="education-item">
+
+<div class="title-date">
+
+<strong>jagannatha shetty memorial school,bondala</strong>
+
+<span class="date">2022</span>
+
+</div>
+
+<p>SSLC</p>
+<p>percentage:89.92%</p>
+
+
+</div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+
+
+
+
+<!-- PROJECTS -->
+
+<section>
+
+<h3>Projects</h3>
+
+<div class="project">
+
+<strong>Student Expense Tracker</strong>
+
+<ul>
+
+<li>Designed a conceptual recycling framework using AI and robotics.</li>
+
+<li>Explored automated waste sorting and smartphone disassembly systems.</li>
+
+<li>Integrated smart recycling ideas with computer vision concepts.</li>
+
+</ul>
+
+</div>
+
+
+<div class="project">
+
+<strong>Student Attendance Management System (Web-Based)</strong>
+
+<ul>
+
+<li>Developed a digital attendance management system using HTML, CSS, and JavaScript.</li>
+
+<li>Implemented tracking, percentage calculation, and report generation.</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+<!-- CERTIFICATIONS -->
+
+<section>
+
+<h3>Certifications</h3>
+
+<ul>
+
+<li>Creating Responsive Web Pages using Bootstrap 4 – Infosys Springboard</li>
+
+<li>Data Structures and Algorithms – Infosys Springboard</li>
+
+<li>Linux for Beginners – Infosys Springboard</li>
+
+
+
+</ul>
+
+</section>
+
+
+<!-- TECHNICAL SKILLS -->
+
+<section>
+
+<h3>Technical Skills</h3>
+
+<div class="skills">
+
+<strong>Languages</strong>
+
+<span>C, C++, Python, Java (Basic)</span>
+
+<strong>Web Development</strong>
+
+<span>HTML, CSS, JavaScript</span>
+
+
+<strong>Tools</strong>
+
+<span>VS Code, Git, Microsoft Excel</span>
+
+</div>
+
+</section>
+
+
+<!-- ACHIEVEMENTS -->
+
+<section>
+
+<h3>Achievements</h3>
+
+<ul>
+
+<li>Completed multiple industry-recognized certifications through Infosys Springboard.</li>
+
+<li>Built academic and web development projects using modern technologies.</li>
+
+</ul>
+
+</section>
+
+
+<!-- INTERESTS AND LANGUAGES -->
+
+<section>
+
+<h3>Interests & Languages</h3>
+
+<p>
+<strong>Interests:</strong>
+Painting • Drawing • Music • New Tech
+</p>
+
+<p>
+<strong>Languages:</strong>
+English • Kannada 
+</p>
+
+</section>
+
+</div>
+
+
+<div class="buttons">
+
+<button class="action-btn"
+onclick="showPage('homePage')">
+⬅ Back to Home
+</button>
+
+<button class="action-btn"
+onclick="window.print()">
+Download / Print Resume
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- BIODATA PAGE -->
+<!-- ================================= -->
+
+<div id="biodataPage" class="page">
+
+<div class="biodata">
+
+<h1>MY BIODATA</h1>
+
+<div class="header">
+
+<img id="bioPhoto"
+src="https://placehold.co/100x100?text=Photo"
+class="profile-image"
+alt="Profile Photo">
+
+<h2>DEEKSHA</h2>
+
+<p class="role">
+Computer Science Engineering Student
+</p>
+
+</div>
+
+
+<div class="bio-details">
+
+<div class="bio-row">
+<strong>Name</strong>
+<span>Deeksha</span>
+</div>
+<div class="bio-row">
+<strong>Date of Birth</strong>
+<span>03/02/2006</span>
+</div>
+<div class="bio-row">
+<strong>Gender</strong>
+<span>female</span>
+</div>
+<div class="bio-row">
+<strong>Nationality</strong>
+<span>Indian</span>
+</div>
+<div class="bio-row">
+<strong>Languages Known</strong>
+<span>English,Kannada,Tulu</span>
+</div>
+<div class="bio-row">
+<strong>Address</strong>
+<span>Bondala house,Kalladka,Bantwala Dakshina Kannada</span>
+</div>
+
+<div class="bio-row">
+<strong>Mobile Number</strong>
+<span>9901404319</span>
+</div>
+
+<div class="bio-row">
+<strong>Email ID</strong>
+<span>deekshakpoojary023@gmail.com</span>
+</div>
+
+
+
+<div class="bio-row">
+<strong>Qualification</strong>
+<span>Bachelor of Engineering</span>
+</div>
+<div class="bio-row">
+<strong>Hobbies</strong>
+<span>Reading,programming,Singing</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button class="action-btn"
+onclick="showPage('homePage')">
+⬅ Back to Home
+</button>
+
+<button class="action-btn"
+onclick="window.print()">
+Download / Print Biodata
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================= -->
+
+<script>
+
+// PAGE NAVIGATION
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+
+        page.classList.remove("active");
+
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo(0,0);
+
+}
+
+
+// PROFILE PHOTO ELEMENTS
+
+const photoUpload =
+document.getElementById("photoUpload");
+
+const homePhoto =
+document.getElementById("homePhoto");
+
+const resumePhoto =
+document.getElementById("resumePhoto");
+
+const bioPhoto =
+document.getElementById("bioPhoto");
+
+
+// LOAD PREVIOUSLY SAVED PHOTO
+
+const savedPhoto =
+localStorage.getItem("deekshaProfilePhoto");
+
+if(savedPhoto) {
+
+    homePhoto.src = savedPhoto;
+
+    resumePhoto.src = savedPhoto;
+
+    bioPhoto.src = savedPhoto;
+
+}
+
+
+// UPLOAD PROFILE PHOTO
+
+photoUpload.addEventListener("change", function(event) {
+
+    const file = event.target.files[0];
+
+    if(!file) {
+        return;
+    }
+
+    if(!file.type.startsWith("image/")) {
+
+        alert("Please select a valid image.");
+
+        return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        const imageData = e.target.result;
+
+        // DISPLAY PHOTO ON ALL THREE PAGES
+
+        homePhoto.src = imageData;
+
+        resumePhoto.src = imageData;
+
+        bioPhoto.src = imageData;
+
+        // SAVE PHOTO IN BROWSER
+
+        try {
+
+            localStorage.setItem(
+                "deekshaProfilePhoto",
+                imageData
+            );
+
+        } catch(error) {
+
+            alert("Image is too large. Please select a smaller photo.");
+
+        }
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+</script>
+
+</body>
+</html>
